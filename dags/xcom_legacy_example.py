@@ -49,7 +49,7 @@ pusher1 = PythonOperator(
 )
 
 pusher2 = PythonOperator(
-    task_id='pusher1',
+    task_id='pusher2',
     dag=example_xcom,
     python_callable=push_2
 )

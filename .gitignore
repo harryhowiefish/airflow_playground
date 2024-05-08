@@ -159,3 +159,4 @@ logs/*
 config/airflow.cfg
 gcp_creds.json
 *.ipynb
+*.json

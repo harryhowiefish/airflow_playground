@@ -4,6 +4,9 @@ from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 import requests
 import json
+from dotenv import load_dotenv
+import os
+load_dotenv('/opt/airflow/dags/utils/.env')
 
 
 class Simple_DC_Hook:
@@ -61,7 +64,7 @@ start_task = BashOperator(
 email = PythonOperator(
     task_id='discord_notify',
     python_callable=notify,
-    op_kwargs={'url': 'https://discord.com/api/webhooks/1232248158143385610/k6sU8xPWEAC7_cqPOR-QvSLOZgpKvdKrMQHYZs6gNxi-XQx10meYgWtErxlCQ0mZzMUh',  # noqa
+    op_kwargs={'url': os.environ['discord_webhook'],  # noqa
                'msg': 'This message is sent from airflow'},
     dag=dc_notify_test,
 )
